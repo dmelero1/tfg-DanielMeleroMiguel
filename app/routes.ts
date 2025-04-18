@@ -6,5 +6,7 @@ export default [
   ]),
   layout("./layouts/private.tsx", [
     route("dashboard", "routes/dashboard.tsx"),
+    route("exercises", "routes/exercise.tsx"),
+    route("exercises/:id", "routes/exerciseDetail.tsx"),
   ]),
 ] satisfies RouteConfig;
