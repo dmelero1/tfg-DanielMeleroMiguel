@@ -2,8 +2,8 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="p-6 bg-blue-900">
-      <h1 className="text-2xl font-bold">Bienvenido al Dashboard</h1>
+    <div>
+      <h1 className="text-2xl font-bold text-gray-700 px-6 pt-4">Bienvenido al Dashboard</h1>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// pages/exerciseDetail.tsx
 import React from "react";
 import { useParams } from "react-router";
 import { exercises } from "../data/exerciseData";
