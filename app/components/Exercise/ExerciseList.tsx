@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { exercises } from "../../data/exerciseData";
+import React, { useState, useEffect } from "react";
 import ExerciseCard from "./ExerciseCard";
 
 const muscleGroups = [
@@ -16,10 +15,34 @@ const muscleGroups = [
 
 const ExerciseList = () => {
   const [selectedGroup, setSelectedGroup] = useState("Todos");
+  const [exercises, setExercises] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/exercises")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Hubo un problema al obtener los ejercicios");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setExercises(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   const filtered = selectedGroup === "Todos"
     ? exercises
     : exercises.filter(e => e.muscleGroup === selectedGroup);
+
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="p-6">
