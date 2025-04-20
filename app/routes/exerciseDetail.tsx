@@ -37,7 +37,7 @@ const ExerciseDetail = () => {
   const imagePath = `/${exercise.imageUrl}`;
 
   return (
-    <div className="p-8 bg-gray-200 text-black max-w-5xl mx-auto mt-10 rounded-lg shadow-lg">
+    <div className="p-8 bg-gray-300 text-black max-w-5xl mx-auto mt-10 rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold mb-5 text-center uppercase">{exercise.name}</h2>
       <img
         src={imagePath}

@@ -4,7 +4,7 @@ import ExerciseList from "../components/Exercise/ExerciseList";
 
 const ExercisePage = () => {
   return (
-    <div>
+    <div className="p-8">
       <h1 className="text-2xl font-bold text-gray-700 px-6 pt-4">Ejercicios</h1>
       <ExerciseList />
     </div>
