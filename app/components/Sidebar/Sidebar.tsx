@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router'
 import logo from 'app/components/Sidebar/ImgSidebar/logodmsport.png';
 import { MdDashboard, MdFitnessCenter, MdPerson } from "react-icons/md"
+import { PiCourtBasketballFill } from "react-icons/pi";
 
 function Sidebar() {
     return (
@@ -30,7 +31,14 @@ function Sidebar() {
                         <span className="hidden md:inline">Ejercicios</span>
                     </Link>
                     <Link
-                        to="series"
+                        to="/instalaciones"
+                        className="flex items-center px-2 sm:px-3 md:px-4 py-2 rounded-lg transition duration-300 hover:bg-gray-200 hover:text-indigo-950 hover:shadow-lg hover:scale-105 transform"
+                    >
+                        <PiCourtBasketballFill  className="text-xl mr-3" />
+                        <span className="hidden md:inline">Instalaciones</span>
+                    </Link>
+                    <Link
+                        to="/profile"
                         className="flex items-center px-2 sm:px-3 md:px-4 py-2 rounded-lg transition duration-300 hover:bg-gray-200 hover:text-indigo-950 hover:shadow-lg hover:scale-105 transform"
                     >
                         <MdPerson className="text-xl mr-3" />

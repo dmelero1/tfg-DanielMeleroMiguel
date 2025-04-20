@@ -8,5 +8,8 @@ export default [
     route("dashboard", "routes/dashboard.tsx"),
     route("exercises", "routes/exercise.tsx"),
     route("exercises/:id", "routes/exerciseDetail.tsx"),
+    route("instalaciones", "routes/instalaciones.tsx"),
+    route("instalaciones/:id", "routes/instalacionesDetail.tsx"),
+    route("profile", "routes/profile.tsx"),
   ]),
 ] satisfies RouteConfig;
