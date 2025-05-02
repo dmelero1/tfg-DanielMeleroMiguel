@@ -1,9 +1,14 @@
 import React from "react";
+import DashboardCarrousel from "~/components/Dashboard/DashboardCarrousel";
+import DashboardClases from "~/components/Dashboard/DashboardClases";
+import DashboardImg from "~/components/Dashboard/DashboardImg";
 
 const Dashboard = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-700 px-6 pt-4">Bienvenido al Dashboard</h1>
+      <DashboardImg />
+      <DashboardClases />
+      <DashboardCarrousel />
     </div>
   );
 };
