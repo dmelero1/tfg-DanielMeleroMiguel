@@ -85,5 +85,24 @@ app.get('/exercises/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${port}/exercises`);
+  console.log(`Servidor corriendo en http://localhost:${port}/exercises`);
+});
+
+// verificacion login con bdd
+app.post('/users', (req, res) => {
+  const { username, password } = req.body;
+
+  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  db.query(sql, [username, password], (err, results) => {
+    if (err) {
+      console.error('Error en la consulta:', err);
+      return res.status(500).json({ error: 'Error al consultar la base de datos' });
+    }
+
+    if (results.length > 0) {
+      return res.status(200).json({ success: true, message: 'Login exitoso' });
+    } else {
+      return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+    }
+  });
 });

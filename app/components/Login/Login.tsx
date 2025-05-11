@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
@@ -16,52 +18,80 @@ const Login = () => {
       return;
     }
 
-    console.log("Login", { username, password });
-
-    setError("");
-    setSuccess(true);
-
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 500);
+    fetch("http://localhost:3001/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 500);
+        }
+      })
+      .catch((err) => {
+        console.error("Error al conectarse con el servidor:", err);
+        setError("Error al conectarse con el servidor");
+      });
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-semibold text-center mb-6">INICIAR SESION</h2>
-        
-        {error && <p className="text-red-500 text-sm text-center mb-4">{error}</p>}
-        {success && <p className="text-green-500 text-sm text-center mb-4">¡Login exitoso! Redirigiendo...</p>}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 font-medium mb-2">Nombre de usuario:</label>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="w-full max-w-md p-8 bg-gray-800 rounded-3xl shadow-2xl">
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Iniciar sesión
+        </h2>
+
+        {error && (
+          <p className="text-red-400 text-sm text-center mb-4">{error}</p>
+        )}
+        {success && (
+          <p className="text-green-400 text-sm text-center mb-4">
+            ¡Login exitoso! Redirigiendo...
+          </p>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
             <input
               type="text"
               id="username"
-              placeholder="Escribe tu nombre de usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
-              className="w-full text-black p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Nombre de usuario"
+              className="w-full px-4 py-4 text-white bg-gray-700 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Contraseña:</label>
+          <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
-              placeholder="Escribe tu contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full text-black p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Contraseña"
+              className="w-full px-4 py-4 pr-10 text-white bg-gray-700 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute top-5 right-5 text-gray-300 hover:text-white cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
 
-          <button type="submit" className="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button
+            type="submit"
+            className="w-full py-3 bg-indigo-700 font-semibold rounded-xl hover:bg-indigo-800 transition duration-300 cursor-pointer"
+          >
             Iniciar sesión
           </button>
         </form>
