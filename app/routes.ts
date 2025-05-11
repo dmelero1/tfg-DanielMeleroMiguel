@@ -1,4 +1,5 @@
 import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
+import NotFound from "./routes/notfound";
 
 export default [
   layout("./layouts/public.tsx", [
@@ -12,4 +13,5 @@ export default [
     route("instalaciones/:id", "routes/instalacionesDetail.tsx"),
     route("profile", "routes/profile.tsx"),
   ]),
+  route("*", "routes/NotFound.tsx")
 ] satisfies RouteConfig;
