@@ -90,19 +90,42 @@ app.listen(port, () => {
 
 // verificacion login con bdd
 app.post('/users', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
-  db.query(sql, [username, password], (err, results) => {
+  const sql = 'SELECT * FROM users WHERE email = ? AND password = ?';
+  db.query(sql, [email, password], (err, results) => {
     if (err) {
       console.error('Error en la consulta:', err);
       return res.status(500).json({ error: 'Error al consultar la base de datos' });
     }
 
     if (results.length > 0) {
-      return res.status(200).json({ success: true, message: 'Login exitoso' });
+      const user = results[0];
+      return res.status(200).json({
+        success: true,
+        message: 'Login exitoso',
+        username: user.username,
+        email: user.email,
+        role: user.rol,
+      });
     } else {
-      return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+      return res.status(401).json({ error: 'Email o contraseña incorrectos' });
     }
+  });
+});
+
+//actualizar data profile
+app.put("/update-user", (req, res) => {
+  const { email, username, genero, fechaNacimiento } = req.body;
+
+  const sql = `UPDATE users SET username = ?, genero = ?, fecha_nacimiento = ? WHERE email = ?`;
+
+  db.query(sql, [username, genero, fechaNacimiento, email], (err, result) => {
+    if (err) {
+      console.error("Error al actualizar el usuario:", err);
+      return res.status(500).json({ error: "Error en la base de datos" });
+    }
+
+    return res.status(200).json({ success: true });
   });
 });

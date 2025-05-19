@@ -3,7 +3,7 @@ import ExerciseCard from "./ExerciseCard";
 
 const muscleGroups = [
   "Todos",
-  "Pecho",
+  "Pectorales",
   "Espalda",
   "Bíceps",
   "Tríceps",

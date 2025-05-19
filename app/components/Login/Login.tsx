@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -13,32 +13,40 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!username || !password) {
-      setError("Por favor, ingresa tu nombre de usuario y contraseña.");
+    if (!email || !password) {
+      setError('Por favor, ingresa tu email y contraseña.');
       return;
     }
 
-    fetch("http://localhost:3001/users", {
-      method: "POST",
+    fetch('http://localhost:3001/users', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
+        console.log('📦 Respuesta del backend:', data);
+
         if (data.error) {
           setError(data.error);
         } else {
+          localStorage.setItem('user', JSON.stringify({
+            username: data.username,
+            email: data.email,
+            role: data.role,
+          }));
+
           setSuccess(true);
           setTimeout(() => {
-            navigate("/dashboard");
+            navigate('/dashboard');
           }, 500);
         }
       })
-      .catch((err) => {
-        console.error("Error al conectarse con el servidor:", err);
-        setError("Error al conectarse con el servidor");
+      .catch(err => {
+        console.error('Error al conectarse con el servidor:', err);
+        setError('Error al conectarse con el servidor');
       });
   };
 
@@ -62,10 +70,10 @@ const Login = () => {
           <div>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Nombre de usuario"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
               className="w-full px-4 py-4 text-white bg-gray-700 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
