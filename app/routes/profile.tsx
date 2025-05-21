@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProfileConfiguration from "../components/Profile/ProfileConfiguration";
+import ProfileCalendar from "~/components/Profile/ProfileCalendar";
 
 const Profile = () => {
   const [user, setUser] = useState<{ username: string; email: string; role: string } | null>(null);
@@ -27,9 +28,8 @@ const Profile = () => {
         </div>
         <div className="flex flex-col justify-center p-6 bg-gray-800 rounded-2xl border-4 border-black border-t-0 shadow-[4px_8px_0_0_#000] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:translate-y-1 hover:shadow-[1px_2px_0_0_#000]">
         </div>
-        <div className="flex flex-col justify-center p-6 bg-gray-800 rounded-2xl border-4 border-black border-t-0 shadow-[4px_8px_0_0_#000] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:translate-y-1 hover:shadow-[1px_2px_0_0_#000]">
-        </div>
-        <div className="flex flex-col justify-center p-6 bg-gray-800 rounded-2xl border-4 border-black border-t-0 shadow-[4px_8px_0_0_#000] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:translate-y-1 hover:shadow-[1px_2px_0_0_#000]">
+        <div className="md:col-span-2 flex flex-col justify-center p-6 bg-gray-800 rounded-2xl border-4 border-black border-t-0 shadow-[4px_8px_0_0_#000] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:translate-y-1 hover:shadow-[1px_2px_0_0_#000]">
+          <ProfileCalendar />
         </div>
       </div>
     </div>
