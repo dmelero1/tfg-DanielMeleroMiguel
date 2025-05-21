@@ -33,6 +33,7 @@ const Login = () => {
           setError(data.error);
         } else {
           localStorage.setItem('user', JSON.stringify({
+            id: data.id,
             username: data.username,
             email: data.email,
             role: data.role,
