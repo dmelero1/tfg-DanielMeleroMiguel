@@ -28,7 +28,7 @@ const ProfileConfiguration = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("user");
-        navigate("/login");
+        navigate("/");
     };
 
     const handleSave = () => {
