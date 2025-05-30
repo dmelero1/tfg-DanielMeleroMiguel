@@ -90,6 +90,34 @@ app.post('/users', async (req, res) => {
   }
 });
 
+// registrar usuarios
+app.post('/users/register', async (req, res) => {
+  const { username, email, password, role } = req.body;
+
+  if (!username || !email || !password || !role) {
+    return res.status(400).json({ error: 'Todos los campos son requeridos.' });
+  }
+
+  try {
+    const [existing] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
+    if (existing.length > 0) {
+      return res.status(400).json({ error: 'El email ya está registrado.' });
+    }
+
+    await db.query('INSERT INTO users (username, email, password, rol) VALUES (?, ?, ?, ?)', [
+      username,
+      email,
+      password,
+      role,
+    ]);
+
+    res.status(201).json({ message: 'Usuario registrado correctamente' });
+  } catch (err) {
+    console.error('Error al registrar usuario:', err);
+    res.status(500).json({ error: 'Error al registrar el usuario' });
+  }
+});
+
 //actualizar data profile
 app.put("/update-user", async (req, res) => {
   const { email, username, genero, fechaNacimiento } = req.body;

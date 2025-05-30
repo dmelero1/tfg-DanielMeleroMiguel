@@ -41,7 +41,11 @@ const Login = () => {
 
           setSuccess(true);
           setTimeout(() => {
-            navigate('/dashboard');
+            if (data.role === 'admin') {
+              navigate('/sign-up');
+            } else {
+              navigate('/dashboard');
+            }
           }, 500);
         }
       })

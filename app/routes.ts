@@ -1,9 +1,9 @@
 import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
-import NotFound from "./routes/notfound";
 
 export default [
   layout("./layouts/public.tsx", [
     index("routes/login.tsx"),
+    route("sign-up", "routes/signup.tsx"),
   ]),
   layout("./layouts/private.tsx", [
     route("dashboard", "routes/dashboard.tsx"),
