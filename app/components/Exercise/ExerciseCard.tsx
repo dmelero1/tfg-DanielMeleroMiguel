@@ -12,7 +12,7 @@ const ExerciseCard = ({ exercise }: Props) => {
 
     return (
         <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
-            <img src={imageUrl} alt={name} className="w-full h-48 object-cover" />
+            <img src={imageUrl} alt={name} className="w-full h-64 object-cover" />
             <div className="p-4 flex flex-col gap-2 flex-grow">
                 <h3 className="text-xl font-bold text-black">{name}</h3>
                 <div className="flex gap-2">

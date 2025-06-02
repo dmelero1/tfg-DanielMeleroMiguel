@@ -1,5 +1,5 @@
 import { FaDumbbell, FaUsers, FaTrophy, FaChalkboardTeacher } from "react-icons/fa";
-import imgFondo from "../Dashboard/ImgDashboard/fondoBeneficios.jpg"
+import imgFondo from "../Dashboard/ImgDashboard/imgFondoGym.jpg"
 
 const beneficios = [
   {
@@ -26,9 +26,9 @@ const beneficios = [
 
 const DashboardBeneficios = () => {
   return (
-    <div className="bg-gray-100 py-10 px-4"
+    <div className="bg-gray-100 py-12 px-4"
     style={{ backgroundImage: `url(${imgFondo})`,
-    backgroundSize: "cover" }}
+    backgroundSize: "contain" }}
     >
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8 text-gray-200">¿Por qué elegirnos?</h2>

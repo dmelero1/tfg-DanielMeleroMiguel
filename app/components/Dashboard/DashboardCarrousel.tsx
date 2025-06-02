@@ -40,7 +40,7 @@ const entrenadores = [
 
 const DashboardCarrousel = () => {
     return (
-        <div className="px-4 py-6 bg-gray-100">
+        <div className="px-4 py-6 bg-gray-400">
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-2xl font-semibold mb-4 text-center">Conoce a nuestros entrenadores</h2>
                 <Swiper
@@ -61,7 +61,7 @@ const DashboardCarrousel = () => {
                 >
                     {entrenadores.map((entrenador, index) => (
                         <SwiperSlide key={index} className="flex justify-center">
-                            <div className="w-full max-w-sm bg-white shadow-md rounded-lg overflow-hidden">
+                            <div className="w-full max-w-sm bg-gray-300 shadow-md rounded-lg overflow-hidden">
                                 <img
                                     src={entrenador.imagen}
                                     alt={entrenador.nombre}
@@ -69,7 +69,7 @@ const DashboardCarrousel = () => {
                                 />
                                 <div className="p-4">
                                     <h3 className="text-lg font-bold">{entrenador.nombre}</h3>
-                                    <p className="text-sm text-gray-600">{entrenador.descripcion}</p>
+                                    <p className="text-sm text-gray-900">{entrenador.descripcion}</p>
                                 </div>
                             </div>
                         </SwiperSlide>
