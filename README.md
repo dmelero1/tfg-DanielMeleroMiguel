@@ -1,87 +1,168 @@
-# Welcome to React Router!
+# DMSPORT - Plataforma de Gestión Deportiva
 
-A modern, production-ready template for building full-stack React applications using React Router.
+**DMSport** es una aplicación web para la gestión de ejercicios, reservas de instalaciones deportivas y planificación de entrenamientos personales.
+Desarrollada con **React Router 7.5**, **TypeScript**, **Express.js** y **MySQL**.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+---
 
-## Features
+## Características Principales
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- **Dashboard Interactivo**: Carrusel de entrenadores y navegación rápida.
+- **Gestión de Ejercicios**: Catálogo con detalles, beneficios e instrucciones.
+- **Reserva de Instalaciones**: Sistema de reservas para espacios deportivos.
+- **Perfil de Usuario**: Calendario semanal y edición de información personal.
+- **Autenticación**: Inicio de sesión seguro con MySQL y localStorage.
+---
 
-## Getting Started
+## Stack Tecnológico
 
-### Installation
+### Frontend
 
-Install the dependencies:
+- **React** 19.0.0  
+- **React Router** 7.5.0  
+- **TypeScript** 5.8.3  
+- **Tailwind CSS** 4.0.0  
+- **Swiper** 11.2.6  
+- **React Icons** 5.5.0  
+
+### Backend
+
+- **Express.js** 5.1.0  
+- **MySQL2** 3.14.0  
+- **CORS** 2.8.5  
+
+### Herramientas de Desarrollo
+
+- **Vite** 5.4.11  
+- **React Router DevTools** 1.1.0  
+
+---
+
+## Instalación
+
+### Prerrequisitos
+
+- Node.js (versión 20 o superior)  
+- MySQL Server  
+- npm  
+
+### Configuración
+
+1. **Clona el repositorio**
+
+```bash
+git clone https://github.com/dmelero1/tfg-DanielMeleroMiguel.git
+cd tfg-DanielMeleroMiguel
+```
+
+2. **Instala las dependencias**
 
 ```bash
 npm install
 ```
 
-### Development
+3. **Configura la base de datos MySQL**
 
-Start the development server with HMR:
+- Crea una base de datos llamada `dmsport`
+- Añade las tablas necesarias: `users`, `exercises`, `calendar_assignments`
+- Configura la conexión en `app/backend/index.js`
+
+4. **Inicia el backend**
+
+```bash
+cd .\app\backend\
+node index.js
+```
+
+5. **Inicia el frontend**
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+---
 
-## Building for Production
+## Scripts Disponibles
 
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+### Desarrollo
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run dev          # Servidor de desarrollo en puerto 5173
 ```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
 
 ---
 
-Built with ❤️ using React Router.
+## Arquitectura
+
+### Rutas del Cliente
+
+- `/` → Login (Layout público)  
+- `/dashboard` → Panel principal  
+- `/exercises` → Catálogo de ejercicios  
+- `/exercises/:id` → Detalle de ejercicio  
+- `/instalaciones` → Reservas  
+- `/profile` → Perfil y calendario  
+
+### API Endpoints (Backend)
+
+- `POST /users` → Autenticación  
+- `GET /exercises` → Lista de ejercicios  
+- `GET /exercises/:id` → Detalle de ejercicio  
+- `PUT /update-user` → Actualizar datos de usuario  
+- `GET /api/calendar/:userId` → Obtener calendario  
+- `POST /api/calendar` → Crear evento  
+- `DELETE /api/calendar/:id` → Eliminar evento  
+
+---
+
+## Funcionalidades
+
+### Dashboard
+- Grid de nuestras ventajas
+- Carrusel de entrenadores
+- Navegación rápida
+
+### Gestión de Ejercicios
+- Catálogo filtrable
+- Detalles, beneficios e imágenes
+
+### Reserva Instalaciones
+- Reserva en pistas de padel y tenis
+- Gestion de horas ocupadas, número personas, extras...
+
+### Perfil de Usuario
+- Datos editables
+- Roles diferenciados (admin/user)
+- Calendario semanal
+
+### Autenticación
+- Login seguro con MySQL
+- localStorage para persistencia
+- Rutas protegidas por roles
+
+---
+
+## 🔧 Configuración de Desarrollo
+
+- React Router 7.5 con SSR  
+- Hot Module Replacement (HMR)  
+- TypeScript por defecto  
+- Estructura modular con layouts públicos y privados  
+
+---
+
+## Responsive Design
+
+Diseño adaptativo con Tailwind CSS:
+
+- Mobile-first  
+- Breakpoints optimizados  
+- Componentes fluidos  
+
+---
+
+## Licencia
+
+Este proyecto forma parte del TRABAJO FINAL DE CICLO CFGS DESARROLLO DE APLICACIONES WEB de **Daniel Melero Miguel**.  
+
+Desarrollado por **Daniel Melero Miguel**.
