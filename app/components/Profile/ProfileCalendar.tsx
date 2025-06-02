@@ -108,29 +108,28 @@ const ProfileCalendar = () => {
     };
 
     return (
-        <div className="bg-gray-800 p-6 rounded-xl shadow-lg overflow-x-auto">
-            <div className="flex items-center justify-between mb-4">
-                <h2 className="flex items-center gap-4 text-2xl font-bold text-white">
+        <div className="bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg overflow-x-auto">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+                <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-white">
                     <IoCalendar />
                     Calendario Semanal
                 </h2>
                 <button
                     onClick={handleClearCalendar}
-                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded"
+                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-3 py-2 rounded"
                     title="Iniciar Nueva Semana"
                 >
                     <FiRefreshCw />
                 </button>
             </div>
-            <div className="grid grid-cols-7 gap-4 text-center text-white font-semibold mb-4">
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-center text-white text-sm font-semibold mb-4">
                 {daysOfWeek.map(day => (
-                    <div key={day} className="bg-gray-700 py-2 rounded">
-                        {day}
-                    </div>
+                    <div key={day} className="bg-gray-700 py-2 rounded">{day}</div>
                 ))}
             </div>
 
-            <div className="grid grid-cols-7 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-7 gap-2">
                 {daysOfWeek.map(day => {
                     const dayExercises = calendarData[day] || [];
                     const hasExercises = dayExercises.length > 0;
@@ -138,27 +137,26 @@ const ProfileCalendar = () => {
                     return (
                         <div
                             key={day}
-                            className={`p-4 rounded-lg border border-gray-600 text-white cursor-pointer transition hover:bg-gray-700
-                                ${selectedDay === day ? "bg-indigo-950" : day === "Sábado" || day === "Domingo" ? "bg-gray-800" : "bg-gray-900"}
-                            `}
+                            className={`p-3 rounded border border-gray-600 text-white text-sm cursor-pointer transition hover:bg-gray-700
+                                ${selectedDay === day ? "bg-indigo-950" : day === "Sábado" || day === "Domingo" ? "bg-gray-800" : "bg-gray-900"}`}
                             onClick={() => setSelectedDay(day)}
                         >
                             {hasExercises ? (
-                                <ul className="space-y-2 mb-6">
+                                <ul className="space-y-2 mb-4">
                                     {dayExercises.map((ex, idx) => (
                                         <li
                                             key={idx}
-                                            className="flex justify-between items-center border-b border-gray-600 py-2 last:border-none"
+                                            className="flex justify-between items-center border-b border-gray-600 py-1 last:border-none"
                                         >
                                             <Link
                                                 to={`/exercises/${ex.exercise_id}`}
-                                                className="hover:underline text-gray-200 hover:text-blue-300"
+                                                className="hover:underline text-gray-200 hover:text-blue-300 truncate max-w-[100px]"
                                             >
                                                 {ex.nombre}
                                             </Link>
                                             <button
                                                 onClick={() => handleDeleteAssignment(day, ex.assignmentId)}
-                                                className="text-xl text-red-500 hover:text-red-300"
+                                                className="text-base text-red-500 hover:text-red-300"
                                                 title="Eliminar"
                                             >
                                                 <MdDelete />
@@ -179,7 +177,7 @@ const ProfileCalendar = () => {
 
             {selectedDay && (
                 <div className="mt-8">
-                    <h3 className="text-white text-lg font-semibold mb-4">
+                    <h3 className="text-white text-base sm:text-lg font-semibold mb-4">
                         Añadir ejercicio el {selectedDay}
                     </h3>
 
@@ -202,7 +200,7 @@ const ProfileCalendar = () => {
                     {selectedMuscle && (
                         <div>
                             <label className="text-sm text-gray-300 mb-1 block">Selecciona un ejercicio</label>
-                            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {exercises
                                     .filter(ex => ex.muscleGroup === selectedMuscle)
                                     .map((ex) => {
@@ -213,10 +211,8 @@ const ProfileCalendar = () => {
                                                 className="bg-gray-700 hover:bg-gray-600 text-white p-4 rounded-xl shadow flex flex-col justify-between transition"
                                             >
                                                 <div>
-                                                    <h4 className="text-lg font-bold mb-1">{ex.name}</h4>
-                                                    <p className="text-sm text-gray-300">
-                                                        {tag.label}
-                                                    </p>
+                                                    <h4 className="text-base font-bold mb-1">{ex.name}</h4>
+                                                    <p className="text-sm text-gray-300">{tag.label}</p>
                                                 </div>
                                                 <button
                                                     onClick={() => handleAddExercise(selectedDay!, ex)}
@@ -230,7 +226,6 @@ const ProfileCalendar = () => {
                             </div>
                         </div>
                     )}
-
                 </div>
             )}
         </div>

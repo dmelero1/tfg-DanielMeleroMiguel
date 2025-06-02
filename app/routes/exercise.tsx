@@ -4,10 +4,9 @@ import ExerciseList from "../components/Exercise/ExerciseList";
 
 const ExercisePage = () => {
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold text-gray-700 px-6 pt-4">Ejercicios</h1>
-      <ExerciseList />
-    </div>
+    <div className="p-0 sm:p-8">
+  <ExerciseList />
+</div>
   );
 };
 
