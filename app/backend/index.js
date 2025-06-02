@@ -294,6 +294,96 @@ app.delete('/api/bmi-history/:historyId', async (req, res) => {
   }
 });
 
+// ver reservas
+app.get("/api/reservas", async (req, res) => {
+  const { pista_id, fecha } = req.query;
+  if (!pista_id || !fecha) {
+    return res.status(400).json({ error: "Faltan parámetros" });
+  }
+
+  try {
+    const [reservas] = await db.query(
+      "SELECT hora FROM reservas WHERE pista_id = ? AND fecha = ?",
+      [pista_id, fecha]
+    );
+    res.json(reservas);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error al obtener reservas" });
+  }
+});
+
+// crear reservas
+app.post("/api/reservas", async (req, res) => {
+  const { user_id, pista_id, fecha, hora, personas, complemento } = req.body;
+  try {
+    // comprobar si hay reserva en esta hora
+    const [existe] = await db.query(
+      "SELECT id FROM reservas WHERE pista_id = ? AND fecha = ? AND hora = ?",
+      [pista_id, fecha, hora]
+    );
+
+    if (existe.length > 0) {
+      return res.status(409).json({ error: "La pista ya está reservada en ese horario." });
+    }
+
+    const [result] = await db.query(
+      `INSERT INTO reservas (user_id, pista_id, fecha, hora, personas, complemento)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [user_id, pista_id, fecha, hora, personas, complemento]
+    );
+
+    res.status(201).json({
+      message: "Reserva creada correctamente",
+      id: result.insertId,
+    });
+  } catch (err) {
+    console.error("Error al crear reserva:", err);
+    res.status(500).json({ error: "Error al crear la reserva" });
+  }
+});
+
+// ver reservas de un usuario
+app.get("/api/reservas/usuario/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const [results] = await db.query(
+      "SELECT * FROM reservas WHERE user_id = ? ORDER BY fecha, hora",
+      [userId]
+    );
+    res.json(results);
+  } catch (err) {
+    console.error("Error al obtener reservas del usuario:", err);
+    res.status(500).json({ error: "Error al obtener reservas" });
+  }
+});
+
+app.get("/api/pistas", async (req, res) => {
+  try {
+    const [results] = await db.query("SELECT * FROM pistas");
+    res.json(results);
+  } catch (err) {
+    console.error("Error al obtener pistas:", err);
+    res.status(500).json({ error: "Error al obtener pistas" });
+  }
+});
+
+// ver detalle x pista
+app.get("/api/pistas/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [results] = await db.query("SELECT * FROM pistas WHERE id = ?", [id]);
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pista no encontrada" });
+    }
+
+    res.json(results[0]);
+  } catch (err) {
+    console.error("Error al obtener detalles de la pista:", err);
+    res.status(500).json({ error: "Error al obtener la pista" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}/exercises`);
