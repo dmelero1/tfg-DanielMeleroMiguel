@@ -12,6 +12,9 @@ export default [
     route("instalaciones", "routes/instalaciones.tsx"),
     route("instalaciones/:id", "routes/instalacionesDetail.tsx"),
     route("profile", "routes/profile.tsx"),
+    route("terminos", "routes/terminos.tsx"),
+    route("privacidad", "routes/privacidad.tsx"),
+    route("cookies", "routes/cookies.tsx"),
   ]),
   route("*", "routes/NotFound.tsx")
 ] satisfies RouteConfig;
