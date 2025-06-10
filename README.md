@@ -97,7 +97,10 @@ npm run dev          # Servidor de desarrollo en puerto 5173
 ### Rutas del Cliente
 
 - `/` → Login (Layout público)  
-- `/dashboard` → Panel principal  
+- `/dashboard` → Panel principal
+- `/terminos` → Terminos y condiciones
+- `/privacidad` → Politica de privacidad
+- `/cookies` → Politica de cookies
 - `/exercises` → Catálogo de ejercicios  
 - `/exercises/:id` → Detalle de ejercicio  
 - `/instalaciones` → Reservas  
@@ -142,7 +145,7 @@ npm run dev          # Servidor de desarrollo en puerto 5173
 
 ---
 
-## 🔧 Configuración de Desarrollo
+## Configuración de Desarrollo
 
 - React Router 7.5 con SSR  
 - Hot Module Replacement (HMR)  
