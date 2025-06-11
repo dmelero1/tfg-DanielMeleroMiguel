@@ -89,7 +89,12 @@ const InstalacionDetail = () => {
     if (!pista || !horaSeleccionada) return null;
 
     const base = pista.tipo === "padel" ? 12 : 10;
-    const extra = complemento === "raquetas" ? 3 : complemento === "pelotas" ? 2.5 : 0;
+    let extra = 0;
+
+    if (complemento === "raquetas") extra = 3;
+    else if (complemento === "pelotas") extra = 2.5;
+    else if (complemento === "raquetas+pelotas") extra = 5.5;
+
     return (base + extra).toFixed(2);
   };
 
@@ -136,7 +141,7 @@ const InstalacionDetail = () => {
                 <label htmlFor="complementos" className="mb-2 font-medium flex items-center gap-1">
                   Complementos:
                   <FaInfoCircle
-                    title="Raquetas: +3€ | Pelotas: +2,5€"
+                    title="Raquetas: +3€ | Pelotas: +2,5€ | Raquetas + Pelotas: +5,5€"
                     className="text-white cursor-pointer"
                   />
                 </label>
@@ -149,6 +154,7 @@ const InstalacionDetail = () => {
                   <option value="">Ninguno</option>
                   <option value="raquetas">Raquetas</option>
                   <option value="pelotas">Pelotas</option>
+                  <option value="raquetas+pelotas">Raquetas + Pelotas</option>
                 </select>
               </div>
 
