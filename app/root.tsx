@@ -6,6 +6,7 @@ export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
   { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter&display=swap" },
+  { rel: "icon", href: "/logodmsport.ico"}
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
