@@ -18,12 +18,12 @@ const entrenadores = [
     },
     {
         nombre: "María Gómez",
-        descripcion: "Entrenadora especializada en la respiración, la flexibilidad y la conexión mente-cuerpo. Ayuda a desconectar del estrés y recargar tu energía.",
+        descripcion: "Entrenadora especializada en la respiración, la flexibilidad y la conexión mente-cuerpo. Ayuda a desconectar del estrés y tambien recargar tu energía.",
         imagen: imgEmp2,
     },
     {
         nombre: "Laura López",
-        descripcion: "Laura trae precisión y control a cada sesión de Pilates, centrada en fortalecer el core, mejorar la postura y aumentar la conciencia corporal.",
+        descripcion: "Laura nos trae precisión y control a cada sesión de Pilates, centrada en fortalecer el core, mejorar la postura y aumentar la conciencia corporal.",
         imagen: imgEmp3,
     },
     {
@@ -33,7 +33,7 @@ const entrenadores = [
     },
     {
         nombre: "David Torres",
-        descripcion: "Con su energía y música, David convierte cada clase de spinning en una experiencia de alto impacto cardiovascular",
+        descripcion: "Con su energía y música, David convierte cada clase de spinning en una experiencia de alto impacto cardiovascular y siempre con una sonrisa",
         imagen: imgEmp5,
     },
 ];
